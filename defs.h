@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* a struct that holds a complex number in 
+ * a form that separates the sign of each part from 
+ * the absolute value. This makes display 
+ * easier, but means some if/else decisions are needed
+ * to perform calculations.*/
+struct complex_number {
+	char sign_zre[1];
+	char sign_zim[1];
+	float abs_zre;
+	float abs_zim;
+};
+
+/* declare complex number struct pointers to hold the operands z1 and z1
+ * and to hold the result of z1[+|-|*|/]z2 */
+struct complex_number *z1;
+struct complex_number *z2;
+struct complex_number *result;
+
+/*********************************************
+ * function prototypes                       *
+ *
+ * *******************************************/
+
+/* a function to create the struct (pointer) when given the 
+ * real and imaginary parts of a complex number */
+struct complex_number *make_z(float zre, float zim);
+
+/* a funtion to add two complex numbers and put the result into 
+ * result struct */
+struct complex_number *add_z(struct complex_number *z1, struct complex_number *z2);
+
+

@@ -1,0 +1,22 @@
+This project is to explore the use of structs and pointers
+to make a set of fuctions for complex-number calculations.
+
+The intended functionality will include (at least) :
+
+Enter one, or two complex numbers
+Calculate and display:
+	
+	Sum of 2 complex nunmbers
+	Difference of 2 complex numbers
+	Division of 2 complex numbers
+	Multiplication of 2 complex numbers:
+		Dot product
+		Cross product
+
+	Complex Conjugate of 1 complex number
+	Inverse of 1 complex number
+
+	Rectangular -> Polar conversion
+	Polar -> Rectangular conversion
+	
+
