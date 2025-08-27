@@ -24,6 +24,12 @@ struct complex_number {
  *
  * *******************************************/
 
+int menu(void);
+struct complex_number *get_z1(void);
+struct complex_number *get_z2(void);
+void print_operands(struct complex_number *z1, struct complex_number *z2);
+void print_result(int,  struct complex_number *result);
+
 /* a function to create the struct (pointer) when given the 
  * real and imaginary parts of a complex number */
 struct complex_number *make_z(float zre, float zim);
@@ -31,5 +37,7 @@ struct complex_number *make_z(float zre, float zim);
 /* a funtion to add two complex numbers and put the result into 
  * result struct */
 struct complex_number *add_z(struct complex_number *z1, struct complex_number *z2);
+/* function to subtract two complex numbers */
+struct complex_number *subtract_z(struct complex_number *z1, struct complex_number *z2);
 
 

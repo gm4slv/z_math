@@ -1,11 +1,11 @@
 CFLAGS = -g -Wall -ansi -pedantic
 CC = gcc
-SRC = main.c
-OBJ = main.o
+SRC = main.c z_math.c defs.h
+OBJ = main.o z_math.o
 
 
 
-test: $(SRC)
+z_calc: $(SRC)
 	$(CC) $(CFLAGS) -o z_calc $(SRC)
 
 all: $(OBJ)
