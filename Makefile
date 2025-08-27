@@ -9,7 +9,7 @@ test: $(SRC)
 	$(CC) $(CFLAGS) -o z_calc $(SRC)
 
 all: $(OBJ)
-	$(CC) $(CFLAGS) -o z_calc$(OBJ)
+	$(CC) $(CFLAGS) -o z_calc $(OBJ)
 
 clean:
 	rm -f $(OBJ)

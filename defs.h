@@ -15,9 +15,9 @@ struct complex_number {
 
 /* declare complex number struct pointers to hold the operands z1 and z1
  * and to hold the result of z1[+|-|*|/]z2 */
-struct complex_number *z1;
-struct complex_number *z2;
-struct complex_number *result;
+/* struct complex_number *z1; */
+/* struct complex_number *z2; */
+/*struct complex_number *result;*/
 
 /*********************************************
  * function prototypes                       *

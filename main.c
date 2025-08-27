@@ -3,21 +3,35 @@
 
 int main()
 {
-	
-	float z1_re; /*  these are the signed real & imaginary parts    */
-	float z1_im; /*  made by reference to the z->sign... char       */
-	float z2_re; /*  multiplying the z->abs_xxx by -1 when the      */
-	float z2_im; /*  sign member character  is '-'                  */
 
-	float result_re;  /* these are the signed real and */
-	float result_im;  /* imaginary parts of the result which will be */
-					  /* passed to make_z() to create a result struct */
-	
+	struct complex_number *z1;
+	struct complex_number *z2;
+
+	struct complex_number *result;	
 	/* create pointers to the structs for the operands */
-	z1 = make_z(-3,-4);
-	z2 = make_z(3,4);
+
+	char line[20];
+	float z1_in_re;
+	float z1_in_im;
+
+	float z2_in_re;
+	float z2_in_im;
+
+	printf("Enter Z1 : real imag : ");
+	fgets(line, sizeof(line), stdin);
+	sscanf(line, "%f %f", &z1_in_re, &z1_in_im);
+
+	printf("Enter Z2 : real imag : ");
+	fgets(line, sizeof(line), stdin);
+	sscanf(line, "%f %f", &z2_in_re, &z2_in_im);
+
+
+
+	z1 = make_z(z1_in_re,z1_in_im);
+	z2 = make_z(z2_in_re,z2_in_im);
 
 	/* send the two pointers-to-structs to the add_z() function */
+	
 
 	result = add_z(z1,z2);	
 
@@ -27,6 +41,11 @@ int main()
 	printf("Z1 = %c%.2f %cj%.2f\n", z1->sign_zre[0], z1->abs_zre, z1->sign_zim[0], z1->abs_zim); 
 	printf("Z2 = %c%.2f %cj%.2f\n", z2->sign_zre[0], z2->abs_zre, z2->sign_zim[0], z2->abs_zim); 
 	printf("Z1 + Z2 = %c%.2f %cj%.2f\n", result->sign_zre[0], result->abs_zre, result->sign_zim[0], result->abs_zim); 
+
+	free(z1);
+	free(z2);
+	free(result);
+
 	return(0);
 }
 
@@ -38,8 +57,6 @@ struct complex_number *make_z(float in_re, float in_im)
 
 	char sign_re[1];
 	char sign_im[1];
-
-	printf("in make_z()\n");
 
 	z_ptr=(struct complex_number *)malloc(sizeof(struct complex_number) * 1);
 	
@@ -82,6 +99,7 @@ struct complex_number *make_z(float in_re, float in_im)
 
 struct complex_number *add_z(struct complex_number *z1, struct complex_number *z2)
 {
+	struct complex_number *add_ptr;
 	float result_re;
 	float result_im;
 	float z1_re; /*  these are the signed real & imaginary parts    */
@@ -89,7 +107,6 @@ struct complex_number *add_z(struct complex_number *z1, struct complex_number *z
 	float z2_re; /*  multiplying the z->abs_xxx by -1 when the      */
 	float z2_im; /*  sign member character  is '-'                  */
 	
-   printf("IN ADD_Z()\n");	
 	
 	/*  make the signed version of real & imaginary parts
          *  of z1 and z1 to allow the calculation to be made */
@@ -140,8 +157,8 @@ struct complex_number *add_z(struct complex_number *z1, struct complex_number *z
          * make_z() and assign the returned pointer
          * to the result struct */
 
-        result = make_z(result_re, result_im);
+        add_ptr = make_z(result_re, result_im);
 
-	return(result);
+	return(add_ptr);
 }
 
