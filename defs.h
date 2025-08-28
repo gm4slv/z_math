@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
 /* a struct that holds a complex number in 
  * a form that separates the sign of each part from 
@@ -48,5 +49,7 @@ struct complex_number *multiply_z(struct complex_number *z1, struct complex_numb
 /* function to multiply 2 complex numbers */
 struct complex_number *divide_z(struct complex_number *z1, struct complex_number *z2);
 struct complex_number *divide2_z(struct complex_number *z1, struct complex_number *z2);
+/* funtion to convert from Rect -> Polar */
+struct complex_number *rect_to_polar(struct complex_number *z1);
 
 

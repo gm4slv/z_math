@@ -68,7 +68,14 @@ int main()
 				free(z1);
 				free(result);
 				break;
-
+			case 'P':
+				z1 = get_z1();
+				result = rect_to_polar(z1);
+				print_1operand(z1);
+				print_result(5,result);
+				free(z1);
+				free(result);
+				break;
 			}
 	}
 /* free the malloc'd storage 
@@ -88,9 +95,30 @@ struct complex_number *get_z1(void)
 	float z1_in_im;
 	struct complex_number *z1in;
 
-	printf("\nEnter Z1 : real<space>imag : ");
+	printf("\nEnter Z1 real \t: ");
 	fgets(line, sizeof(line), stdin);
-	sscanf(line, "%f %f", &z1_in_re, &z1_in_im);
+
+	if(line[0] == '\n')
+	{
+		z1_in_re = 0;
+	}
+	else
+	{
+		sscanf(line, "%f ", &z1_in_re);
+	}
+	
+	printf("\nEnter Z1 imaginary \t: ");
+	fgets(line, sizeof(line), stdin);
+
+	if(line[0] == '\n')
+	{
+		z1_in_im = 0;
+	}
+	else
+	{
+		sscanf(line, "%f ", &z1_in_im);
+	}
+
 	z1in = make_z(z1_in_re,z1_in_im);
 	return(z1in);
 }
@@ -102,10 +130,31 @@ struct complex_number *get_z2(void)
 	float z2_in_re;
 	float z2_in_im;
 	struct complex_number *z2in;
-
-	printf("\nEnter Z2 : real<space>imag : ");
+	
+	printf("\nEnter Z2 real \t: ");
 	fgets(line, sizeof(line), stdin);
-	sscanf(line, "%f %f", &z2_in_re, &z2_in_im);
+	
+	if(line[0] == '\n')
+	{
+		z2_in_re = 0;
+	}
+	else
+	{
+		sscanf(line, "%f ", &z2_in_re);
+	}
+	
+
+	printf("\nEnter Z2 imaginary \t: ");
+	fgets(line, sizeof(line), stdin);
+	
+	if(line[0] == '\n')
+	{
+		z2_in_im = 0;
+	}
+	else
+	{
+		sscanf(line, "%f ", &z2_in_im);
+	}
 
 	z2in = make_z(z2_in_re,z2_in_im);
 	return(z2in);
@@ -139,14 +188,19 @@ void print_1operand(struct complex_number *z1)
 
 void print_result(int r, struct complex_number *result)
 {
-	char function[] = {'+', '-', 'x', '/'}; 
+	char function[] = {'+', '-', '*', '/'}; 
 	if(r == 4)
 	{
 		printf("\n 1 / Z1 =%c%.3f %c j%.3f\n\n", result->sign_zre[0], result->abs_zre, result->sign_zim[0],result->abs_zim);
 	}
+	else if (r == 5)
+	{
+		printf("Converted to polar\n");
+		printf("\n Mag < angle = %.3f < %.3f\n\n", result->abs_zre,result->abs_zim);
+	}
 	else 
 	{	
-	printf("\nZ1 %c Z2 = %c%.3f %c j%.3f\n\n", function[r],
+		printf("\nZ1 %c Z2 = %c%.3f %c j%.3f\n\n", function[r],
 			result->sign_zre[0], result->abs_zre, result->sign_zim[0], result->abs_zim); 
 	}
 	}
@@ -156,7 +210,7 @@ int menu(void)
 {
 	int ch;
 
-	printf("A)dd, S)ubtract, M)ultiply, D)ivide, I)nverse, Q)uit: ");
+	printf("A)dd, S)ubtract, M)ultiply, D)ivide, I)nverse, P)olar, R)ect, Q)uit: ");
 
 	ch=getchar();
 	while(getchar()!='\n')

@@ -1,6 +1,7 @@
 #include "defs.h"
 
 
+const float PI = 3.14159265359;
 
 struct complex_number *make_z(float in_re, float in_im)
 {
@@ -406,4 +407,49 @@ struct complex_number *invert_z(struct complex_number *z1)
 	return(result_ptr);
 }
 
+struct complex_number *rect_to_polar(struct complex_number *z1)
+{
+	struct complex_number *result_ptr;
+	float result_re;
+	float result_im;
+	float z1_re; /*  these are the signed real & imaginary parts    */
+	float z1_im; /*  made by reference to the z->sign... char       */
+	
+	
+	/*  make the signed version of real & imaginary parts
+         *  of z1 and z1 to allow the calculation to be made */
+
+        /* real parts */
+        if( z1->sign_zre[0] == '-')
+        {
+                z1_re = z1->abs_zre * -1;
+        }
+        else
+        {
+                z1_re = z1->abs_zre;
+        }
+
+
+        /* Imaginary parts */
+
+        if( z1->sign_zim[0] == '-')
+        {
+                z1_im = z1->abs_zim;
+        }
+        else
+        {
+                z1_im = z1->abs_zim * -1;
+        }
+
+ /* calculate the real and imaginary result */
+        result_re = sqrt((z1_re * z1_re ) + (z1_im * z1_im)) ;
+        result_im = 180 * atan(z1_im / z1_re) / PI;
+
+        /* send the real and imaginary results to 
+         * make_z() and assign the returned pointer
+         * to the result struct */
+        result_ptr = make_z(result_re, result_im);
+
+	return(result_ptr);
+}
 
