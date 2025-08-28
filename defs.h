@@ -29,6 +29,7 @@ struct complex_number {
 int menu(void);
 struct complex_number *get_z1(void);
 struct complex_number *get_z2(void);
+struct complex_number *get_z1_polar(void);
 void print_2operands(struct complex_number *z1, struct complex_number *z2);
 void print_1operand(struct complex_number *z1);
 void print_result(int,  struct complex_number *result);
@@ -49,7 +50,8 @@ struct complex_number *multiply_z(struct complex_number *z1, struct complex_numb
 /* function to multiply 2 complex numbers */
 struct complex_number *divide_z(struct complex_number *z1, struct complex_number *z2);
 struct complex_number *divide2_z(struct complex_number *z1, struct complex_number *z2);
-/* funtion to convert from Rect -> Polar */
+/* funtions to convert from Rect -> Polar -> */
 struct complex_number *rect_to_polar(struct complex_number *z1);
+struct complex_number *polar_to_rect(struct complex_number *z1);
 
 
