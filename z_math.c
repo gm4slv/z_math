@@ -318,9 +318,11 @@ struct complex_number *divide_z(struct complex_number *z1, struct complex_number
 
  /* calculate the real and imaginary result */
         
-		result_re = ((z1_re * z2_re)/(z2_re*z2_re + z2_im*z2_im) + (z1_im * z2_im)/(z2_re*z2_re + z2_im*z2_im));
+		result_re = ((z1_re * z2_re)/(z2_re*z2_re + z2_im*z2_im) 
+				+ (z1_im * z2_im)/(z2_re*z2_re + z2_im*z2_im));
 
-		result_im = ((z1_im * z2_re)/(z2_re*z2_re + z2_im*z2_im) - (z1_re * z2_im)/(z2_re*z2_re + z2_im*z2_im));
+		result_im = ((z1_im * z2_re)/(z2_re*z2_re + z2_im*z2_im) 
+				- (z1_re * z2_im)/(z2_re*z2_re + z2_im*z2_im));
 
 
         /* send the real and imaginary results to 
