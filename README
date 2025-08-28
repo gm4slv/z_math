@@ -6,20 +6,23 @@ The intended functionality will include (at least) :
 Enter one, or two complex numbers
 Calculate and display:
 	
-	Sum of 2 complex numbers - done
-	Difference of 2 complex numbers - done
+	Sum of 2 complex numbers 			- done
+	Difference of 2 complex numbers 	- done
 	Multiplication of 2 complex numbers - done
-	Division of 2 complex numbers - done
-	Inverse of 1 complex number - done
+	Division of 2 complex numbers 		- done
+	Inverse of 1 complex number 		- done
+	Inverse of 1 complex number 		- done
 
+	Rectangular -> Polar conversion 	- done
+	Polar -> Rectangular conversion 	- done
+
+<TO DO LIST>
 
 		Dot product
 		Cross product
-
-	Complex Conjugate of 1 complex number
-	Inverse of 1 complex number
-
-	Rectangular -> Polar conversion
-	Polar -> Rectangular conversion
+		Complex Conjugate of 1 complex number
 	
+To think about in future:
 
+Storage of caclulation results to use in next calculation
+	- a simple stack - would a linked list be an approach to this?

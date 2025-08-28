@@ -22,7 +22,7 @@ int main()
 			case 'A':
 				z1 = get_z1();
 				z2 = get_z2();
-				print_2operands(z1,z2);
+				print_dual_operands(z1,z2);
 				result = add_z(z1,z2);
 				print_result(0,result);
 				free(z1);
@@ -32,7 +32,7 @@ int main()
 			case 'S':
 				z1 = get_z1();
 				z2 = get_z2();
-				print_2operands(z1,z2);
+				print_dual_operands(z1,z2);
 				result = subtract_z(z1,z2);
 				print_result(1,result);
 				free(z1);
@@ -42,7 +42,7 @@ int main()
 			case 'M':
 				z1 = get_z1();
 				z2 = get_z2();
-				print_2operands(z1,z2);
+				print_dual_operands(z1,z2);
 				result = multiply_z(z1,z2);
 				print_result(2,result);
 				free(z1);
@@ -52,7 +52,7 @@ int main()
 			case 'D':
 				z1 = get_z1();
 				z2 = get_z2();
-				print_2operands(z1,z2);
+				print_dual_operands(z1,z2);
 				result = divide2_z(z1,z2); /* using the simplified divide funtion */
 				printf("\nUsing divide2_z()\n");
 				print_result(3,result);
@@ -63,7 +63,7 @@ int main()
 			case 'I':
 				z1 = get_z1();
 				result = invert_z(z1);
-				print_1operand(z1);
+				print_single_operand(z1);
 				print_result(4,result);
 				free(z1);
 				free(result);
@@ -71,7 +71,7 @@ int main()
 			case 'P':
 				z1 = get_z1();
 				result = rect_to_polar(z1);
-				print_1operand(z1);
+				print_single_operand(z1);
 				print_result(5,result);
 				free(z1);
 				free(result);
@@ -79,7 +79,7 @@ int main()
 			case 'R':
 				z1 = get_z1_polar();
 				result = polar_to_rect(z1);
-				print_1operand(z1);
+				print_polar_operand(z1);
 				print_result(6,result);
 				free(z1);
 				free(result);
@@ -212,7 +212,7 @@ struct complex_number *get_z2(void)
 
 	/* print the struct->members */
 
-void print_2operands(struct complex_number *z1, struct complex_number *z2)
+void print_dual_operands(struct complex_number *z1, struct complex_number *z2)
 {
 
 	printf("\nZ1 = %c%.2f %c j%.2f\n",
@@ -222,12 +222,30 @@ void print_2operands(struct complex_number *z1, struct complex_number *z2)
 }
 	/* print the struct->members */
 
-void print_1operand(struct complex_number *z1)
+void print_single_operand(struct complex_number *z1)
 {
 
 	printf("\nZ1 = %c%.2f %c j%.2f\n",
 		   	z1->sign_zre[0], z1->abs_zre, z1->sign_zim[0], z1->abs_zim); 
 }
+
+void print_polar_operand(struct complex_number *z1)
+{
+
+	printf("\nZ1 = %.2f < %.2f degrees\n",
+		   	 z1->abs_zre, z1->abs_zim); 
+}
+
+
+/***************************************************************
+ *
+ *	this prints the results and is dependant on what
+ *	function was preformed to decide how to format the
+ *	print.
+ *
+ *	IT MIGHT BE A CANDIDATE FOR A SWITCH function?
+ *	
+ ***************************************************************/
 
 void print_result(int r, struct complex_number *result)
 {
@@ -239,7 +257,7 @@ void print_result(int r, struct complex_number *result)
 	else if (r == 5)
 	{
 		printf("Converted to polar\n");
-		printf("\n Mag < angle = %.3f < %.3f\n\n", result->abs_zre,result->abs_zim);
+		printf("\n Mag < angle = %.3f < %.3f degrees\n\n", result->abs_zre,result->abs_zim);
 	}
 	else if( r == 6)
 	{
@@ -249,8 +267,7 @@ void print_result(int r, struct complex_number *result)
 
 	else 
 	{	
-		printf("\nZ1 %c Z2 = %c%.3f %c j%.3f\n\n", function[r],
-			result->sign_zre[0], result->abs_zre, result->sign_zim[0], result->abs_zim); 
+		printf("\nZ1 %c Z2 = %c%.3f %c j%.3f\n\n", function[r], result->sign_zre[0], result->abs_zre, result->sign_zim[0], result->abs_zim); 
 	}
 }
 

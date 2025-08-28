@@ -30,8 +30,9 @@ int menu(void);
 struct complex_number *get_z1(void);
 struct complex_number *get_z2(void);
 struct complex_number *get_z1_polar(void);
-void print_2operands(struct complex_number *z1, struct complex_number *z2);
-void print_1operand(struct complex_number *z1);
+void print_dual_operands(struct complex_number *z1, struct complex_number *z2);
+void print_single_operand(struct complex_number *z1);
+void print_polar_operand(struct complex_number *z1);
 void print_result(int,  struct complex_number *result);
 
 /* a function to create the struct (pointer) when given the 
