@@ -6,10 +6,13 @@ The intended functionality will include (at least) :
 Enter one, or two complex numbers
 Calculate and display:
 	
-	Sum of 2 complex nunmbers
-	Difference of 2 complex numbers
-	Division of 2 complex numbers
-	Multiplication of 2 complex numbers:
+	Sum of 2 complex numbers - done
+	Difference of 2 complex numbers - done
+	Multiplication of 2 complex numbers - done
+	Division of 2 complex numbers - done
+	Inverse of 1 complex number - done
+
+
 		Dot product
 		Cross product
 
