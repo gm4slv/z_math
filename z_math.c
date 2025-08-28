@@ -254,6 +254,14 @@ struct complex_number *multiply_z(struct complex_number *z1, struct complex_numb
 	return(result_ptr);
 }
 
+
+/* this caclulates the division using the input numbers 
+ * and using their real & imaginary  parts
+ *
+ * there is a simpler funtion divide2_z() which uses existing
+ * invert_z and multiply_z instead
+ *
+ *  which is better? */
 struct complex_number *divide_z(struct complex_number *z1, struct complex_number *z2)
 {
 	struct complex_number *result_ptr;
@@ -263,6 +271,7 @@ struct complex_number *divide_z(struct complex_number *z1, struct complex_number
 	float z1_im; /*  made by reference to the z->sign... char       */
 	float z2_re; /*  multiplying the z->abs_xxx by -1 when the      */
 	float z2_im; /*  sign member character  is '-'                  */
+
 	
 	
 	/*  make the signed version of real & imaginary parts
@@ -324,6 +333,32 @@ struct complex_number *divide_z(struct complex_number *z1, struct complex_number
 
 
 
+/* this is a simplified divide funtion that uses the existing
+ * invert_z and multiply_z functions 
+ *
+ * this might become the default divide_z() function  */
+
+struct complex_number *divide2_z(struct complex_number *z1, struct complex_number *z2)
+{
+	struct complex_number *result_ptr;
+	struct complex_number *z3;
+
+	z3 = invert_z(z2);
+	
+
+	result_ptr = multiply_z(z1,z3);
+	
+        /* send the real and imaginary results to 
+         * make_z() and assign the returned pointer
+         * to the result struct */
+
+      /*  result_ptr = make_z(result_re, result_im); */
+	free(z3);
+
+	return(result_ptr);
+}
+
+
 
 struct complex_number *invert_z(struct complex_number *z1)
 {
@@ -366,7 +401,6 @@ struct complex_number *invert_z(struct complex_number *z1)
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
          * to the result struct */
-
         result_ptr = make_z(result_re, result_im);
 
 	return(result_ptr);

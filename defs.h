@@ -47,5 +47,6 @@ struct complex_number *invert_z(struct complex_number *z1);
 struct complex_number *multiply_z(struct complex_number *z1, struct complex_number *z2);
 /* function to multiply 2 complex numbers */
 struct complex_number *divide_z(struct complex_number *z1, struct complex_number *z2);
+struct complex_number *divide2_z(struct complex_number *z1, struct complex_number *z2);
 
 
