@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /* a struct that holds a complex number in 
  * a form that separates the sign of each part from 

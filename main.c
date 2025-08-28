@@ -14,34 +14,39 @@ int main()
 	/* Give the menu */
 	int choice='\0';
 
-	while(choice!='q')
+	while( choice != 'Q' )
 	{
 		choice=menu();
 		switch (choice)
 		{
 			case 'A':
-			case 'a':
 				z1 = get_z1();
 				z2 = get_z2();
 				print_operands(z1,z2);
 				result=add_z(z1,z2);
 				print_result(0,result);
+				free(z1);
+				free(z2);
+				free(result);
 				break;
 			case 'S':
-			case 's':
 				z1 = get_z1();
 				z2 = get_z2();
 				print_operands(z1,z2);
 				result=subtract_z(z1,z2);
 				print_result(1,result);
+				free(z1);
+				free(z2);
+				free(result);
 				break;
 
 			}
 	}
-	/* free the malloc'd storage */
+/* free the malloc'd storage 
 	free(z1);
 	free(z2);
 	free(result);
+*/
 
 	return(0);
 }
@@ -112,6 +117,6 @@ int menu(void)
 	ch=getchar();
 	while(getchar()!='\n')
 		;
-	return(ch);
+	return(toupper(ch));
 }
 
