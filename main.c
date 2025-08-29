@@ -9,14 +9,41 @@ int main()
 
 	struct complex_number *result;	
 
-	/* get user input of 2 complex numbers */
 
+	/* get user input of 2 complex numbers */
+	
+	
+	/* printing results requires passing a "function ID digit" to 
+	 * select appropriate print format
+	 *
+	 * printing is done from the input_output.c module
+	 *
+	 * the IDs are:
+	 * 	*0 = addition
+	 * 	*1 = subtraction
+	 *  *2 = multiplication
+	 *  *3 = division
+	 *  4 = invert
+	 *  5 = rect-polar convert
+	 *  6 = polar-rect convert
+	 *
+	 * *0,2,3,4 are redundant - the same print routine is used for
+	 * all of these. 
+	 *
+	 *  4,5,6 are used in an if() statement to select appropriate printf format
+	 *
+	 * 	A switch might be a better choice than a chain of if...else if....else
+	 *
+	 */
+	 
+	
+	
 	/* Give the menu */
 	int choice='\0';
 
 	while( choice != 'Q' )
 	{
-		choice=menu();
+		choice=menu();		/* menu() is in input_output.c */
 		switch (choice)
 		{
 			case 'A':
@@ -86,11 +113,6 @@ int main()
 				break;
 			}
 	}
-/* free the malloc'd storage 
-	free(z1);
-	free(z2);
-	free(result);
-*/
 
 	return(0);
 }

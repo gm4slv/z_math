@@ -44,7 +44,7 @@ struct complex_number *make_z(float in_re, float in_im)
 	
 	}
 	
-	/* we assing the struct members using pointer notation
+	/* we are p assing the struct members using pointer notation
 	 * with the values and char (for sign) before returning the
 	 * pointer for the location of the filled-in-with-data struct */
 
@@ -436,16 +436,42 @@ struct complex_number *rect_to_polar(struct complex_number *z1)
 
         if( z1->sign_zim[0] == '-')
         {
-                z1_im = z1->abs_zim;
+                z1_im = z1->abs_zim * -1;
         }
         else
         {
-                z1_im = z1->abs_zim * -1;
+                z1_im = z1->abs_zim;
         }
 
- /* calculate the real and imaginary result */
+
+ 		/* THIS IS NOT FULLY CORRECT---- NEED TO ACCOUNT FOR
+		 * OTHER QUADRANTS WHERE parts are negative
+		 * THE SQRT function can't handle these properly
+		 *
+		 */
+
         result_re = sqrt((z1_re * z1_re ) + (z1_im * z1_im)) ;
         result_im = 180 * atan(z1_im / z1_re) / PI;
+		
+		/* work out the quadrant */
+
+		if ( z1_re >= 0 && z1_im < 0 )
+		{
+			result_im = result_im ;
+		}
+		else if  ( z1_re < 0 && z1_im < 0 ) /* 3rd quadrant */
+		{
+			result_im = result_im - 180;
+		}
+		else if( z1_re < 0 && z1_im >= 0) /* 2nd quadrant */
+		{
+			result_im = result_im + 180;
+		}
+		else
+		{
+		;
+		}
+
 
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
@@ -484,11 +510,11 @@ struct complex_number *polar_to_rect(struct complex_number *z1)
 
         if( z1->sign_zim[0] == '-')
         {
-                z1_im = z1->abs_zim;
+                z1_im = z1->abs_zim * -1;
         }
         else
         {
-                z1_im = z1->abs_zim * -1;
+                z1_im = z1->abs_zim;
         }
 
         

@@ -156,6 +156,7 @@ void print_polar_operand(struct complex_number *z1)
 
 void print_result(int r, struct complex_number *result)
 {
+	char sign[1];
 	char function[] = {'+', '-', '*', '/'}; 
 	if(r == 4)
 	{
@@ -166,8 +167,12 @@ void print_result(int r, struct complex_number *result)
 	else if (r == 5)
 	{
 		printf("Converted to polar\n");
-		printf("\n Mag < angle = %.3f < %.3f degrees\n\n", 
-				result->abs_zre,result->abs_zim);
+		if (result->sign_zim[0] == '-')
+			sign[0] = result->sign_zim[0];
+		else
+			sign[0] = ' ';
+		printf("\n Mag < angle = %.3f < %c%.3f degrees\n\n", 
+				result->abs_zre,sign[0],result->abs_zim);
 	}
 	else if( r == 6)
 	{
