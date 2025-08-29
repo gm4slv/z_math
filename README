@@ -1,6 +1,16 @@
 This project is to explore the use of structs and pointers
 to make a set of fuctions for complex-number calculations.
 
+There are much simpler ways to calculate complex arithmetic
+but this project is intended as a way of exploring the use
+of structs and pointers, with the complex numbers just being
+a suitable thing to use as a struct and the various
+functions require struct pointers to be passed in and out
+
+It's a learning curve.....
+
+
+
 The intended functionality will include (at least) :
 
 Enter one, or two complex numbers
