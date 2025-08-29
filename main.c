@@ -111,6 +111,24 @@ int main()
 				free(z1);
 				free(result);
 				break;
+			case 'C': /* complex conjugate */
+				z1 = get_z1();
+				result = conjugate_z(z1);
+				print_single_operand(z1);
+				print_result(7,result);
+				free(z1);
+				free(result);
+				break;
+			case '.': 
+				z1 = get_z1();
+				z2 = get_z2();
+				print_dual_operands(z1,z2);
+				result = dot_product(z1,z2);
+				print_result(8,result);
+				free(z1);
+				free(z2);
+				free(result);
+				break;
 			}
 	}
 

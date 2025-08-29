@@ -139,8 +139,8 @@ void print_single_operand(struct complex_number *z1)
 void print_polar_operand(struct complex_number *z1)
 {
 
-	printf("\nZ1 = %.2f < %.2f degrees\n",
-		   	 z1->abs_zre, z1->abs_zim); 
+	printf("\nZ1 = %.2f < %c%.2f degrees\n",
+		   	 z1->abs_zre, z1->sign_zim[0],z1->abs_zim); 
 }
 
 
@@ -158,9 +158,20 @@ void print_result(int r, struct complex_number *result)
 {
 	char sign[1];
 	char function[] = {'+', '-', '*', '/'}; 
-	if(r == 4)
+	if(r == 8)
 	{
-		printf("\n 1 / Z1 =%c%.3f %c j%.3f\n\n", 
+		printf("\n Z1 . Z2 = %c%.3f\n\n", 
+				result->sign_zre[0], result->abs_zre);
+	}
+	else if(r == 7)
+	{
+		printf("\n Z1* = %c%.3f %c j%.3f\n\n", 
+				result->sign_zre[0], result->abs_zre, 
+				result->sign_zim[0],result->abs_zim);
+	}
+	else if(r == 4)
+	{
+		printf("\n 1 / Z1 = %c%.3f %c j%.3f\n\n", 
 				result->sign_zre[0], result->abs_zre, 
 				result->sign_zim[0],result->abs_zim);
 	}
@@ -195,7 +206,7 @@ int menu(void)
 {
 	int ch;
 
-	printf("A)dd, S)ubtract, M)ultiply, D)ivide, I)nverse, r->P)olar, p->R)ect, Q)uit: ");
+	printf("A)dd, S)ubtract, M)ultiply, D)ivide, I)nverse, C)onjugate, .)dot, r->P)olar, p->R)ect, Q)uit: ");
 
 	ch=getchar();
 	while(getchar()!='\n')

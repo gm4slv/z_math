@@ -54,5 +54,8 @@ struct complex_number *divide2_z(struct complex_number *z1, struct complex_numbe
 /* funtions to convert from Rect -> Polar -> */
 struct complex_number *rect_to_polar(struct complex_number *z1);
 struct complex_number *polar_to_rect(struct complex_number *z1);
-
-
+/* functions for dot and cross products */
+struct complex_number *dot_product(struct complex_number *z1, struct complex_number *z2);
+struct complex_number *cross_product(struct complex_number *z1, struct complex_number *z2);
+/* function to find the complex conjugate of a complex number */
+ struct complex_number *conjugate_z(struct complex_number *z1);
