@@ -586,6 +586,8 @@ struct complex_number *dot_product(struct complex_number *z1, struct complex_num
 	z2_conj = conjugate_z(z2);
 
 	result_ptr = multiply_z(z1, z2_conj);
+	
+	free(z2_conj);
 
 	return(result_ptr);
 }
