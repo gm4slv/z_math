@@ -9,6 +9,10 @@ functions require struct pointers to be passed in and out
 
 It's a learning curve.....
 
+I'm also using this project to learn how to use git and
+make / Makefile 
+
+==============================================================
 
 
 The intended functionality will include (at least) :
@@ -33,10 +37,10 @@ Calculate and display:
 
 <TO DO LIST>
 	
-	
-To think about in future:
-
-Storage of caclulation results to use in next calculation
-	- a simple stack - would a linked list be an approach to this?
+	To think about in future:
+		
+		Storage of caclulation results to use in next 
+		calculation- a simple stack - would a linked 
+		list be an approach to this?
 
 
