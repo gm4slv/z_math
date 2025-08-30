@@ -159,7 +159,17 @@ void print_result(int r, struct complex_number *result)
 	char sign[1];
 	char function[] = {'+', '-', '*', '/'}; 
 	printf("==================================================\n\n");
-	if(r == 10)
+	if(r == 12)
+	{
+		printf("\n\tArg (angle) <Z1 = %c%.3f degrees \n\n", 
+				result->sign_zim[0],result->abs_zim);
+	}
+	else if(r == 11)
+	{
+		printf("\n\tAbs (mag)  |Z1| = %.3f \n\n", 
+				result->abs_zre);
+	}
+	else if(r == 10)
 	{
 		printf("\n\tUvec = %c%.3f %c j%.3f \n\n", 
 				result->sign_zre[0], result->abs_zre, 
@@ -220,7 +230,7 @@ int menu(void)
 {
 	int ch;
 
-	printf("A)dd\t\tS)ubtract\tM)ultiply\tD)ivide\n\nI)nverse\tC)onjugate\n\n.)dot\t\tx)cross\t\tU)vec\n\nP)olar\tR)ect\n\nQ)uit\n\nEnter Choice : ");
+	printf("\nA)dd\t\tS)ubtract\tM)ultiply\tD)ivide\n\nI)nverse\tC)onjugate\n\ndoT)\t\tcrO)ss\t\tU)vec\n\nRect > P)olar\tPolar > R)ect\taB)s\t\tarG)\n\nQ)uit\n\nEnter Choice : ");
 
 	ch=getchar();
 	while(getchar()!='\n')

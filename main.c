@@ -119,7 +119,7 @@ int main()
 				free(z1);
 				free(result);
 				break;
-			case '.': 
+			case 'T': 
 				z1 = get_z1();
 				z2 = get_z2();
 				print_dual_operands(z1,z2);
@@ -129,7 +129,7 @@ int main()
 				free(z2);
 				free(result);
 				break;
-			case 'X': 
+			case 'O': 
 				z1 = get_z1();
 				z2 = get_z2();
 				print_dual_operands(z1,z2);
@@ -144,6 +144,22 @@ int main()
 				result = uvec_z(z1);
 				print_single_operand(z1);
 				print_result(10,result);
+				free(z1);
+				free(result);
+				break;
+			case 'B': 
+				z1 = get_z1();
+				result = rect_to_polar(z1);
+				print_single_operand(z1);
+				print_result(11,result);
+				free(z1);
+				free(result);
+				break;
+			case 'G': 
+				z1 = get_z1();
+				result = rect_to_polar(z1);
+				print_single_operand(z1);
+				print_result(12,result);
 				free(z1);
 				free(result);
 				break;
