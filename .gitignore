@@ -1,3 +1,6 @@
 z_calc
+zcalc
 *.o
 a.out
+.*swp
+
