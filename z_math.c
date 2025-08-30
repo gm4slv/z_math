@@ -601,23 +601,34 @@ struct complex_number *cross_product(struct complex_number *z1, struct complex_n
 	struct complex_number *z3;
 	struct complex_number *z4;
 	struct complex_number *z5;
+	struct complex_number *z6;
+	struct complex_number *z7;
+	struct complex_number *z8;
 	
 	z3 = conjugate_z(z1);
 	z4 = conjugate_z(z2);
 	z5 = make_z(0,2);
 	
+	z6 = multiply_z(z2,z3);
+	z7 = multiply_z(z1,z4);
+	z8 = subtract_z(z6, z7);
+	
+	result_ptr = divide_z(z8, z5);
+	
+	free(z3);	
+	free(z4);
+	free(z5);
+	free(z6);
+	free(z7);
+	free(z8);
 
-	result_ptr=divide_z(( subtract_z(multiply_z(z2,z3), multiply_z(z1, z4)) ), z5); 
-		;
+/*	result_ptr=divide_z(( subtract_z(multiply_z(z2,z3), multiply_z(z1, z4)) ), z5); */
 
 	/* dot product is the Re part... so set Im to zero */
 
 	result_ptr->abs_zim = 0;
 
-	free(z3);
-	free(z4);
-	free(z5);
-
+	
 	return(result_ptr);
 }
 
