@@ -24,16 +24,17 @@ Calculate and display:
 	Inverse of 1 complex number 		- done
 	Rectangular -> Polar conversion 	- done 
 	Polar -> Rectangular conversion 	- done 
-	Dot product
-	Cross product
+	Dot product							- done
+	Cross product						- done
 	Complex Conjugate					- done
-
+	Unit Vector							- done
 
 <TO DO LIST>
 	
-	Unit Vector
 	
 To think about in future:
 
 Storage of caclulation results to use in next calculation
 	- a simple stack - would a linked list be an approach to this?
+
+

@@ -443,7 +443,6 @@ struct complex_number *rect_to_polar(struct complex_number *z1)
                 z1_im = z1->abs_zim;
         }
 
-
  		/* THIS IS NOT FULLY CORRECT---- NEED TO ACCOUNT FOR
 		 * OTHER QUADRANTS WHERE parts are negative
 		 * THE SQRT function can't handle these properly
@@ -621,4 +620,50 @@ struct complex_number *cross_product(struct complex_number *z1, struct complex_n
 
 	return(result_ptr);
 }
+
+struct complex_number *uvec_z(struct complex_number *z1)
+{
+	struct complex_number *result_ptr;
+	struct complex_number *z3;
+	float z1_re;
+	float z1_im;
+	float z3_re;
+	
+	z3 = rect_to_polar(z1);
+	
+	z3_re = z3->abs_zre;
+	
+    /* real parts */
+    if( z1->sign_zre[0] == '-')
+    {
+		z1_re = z1->abs_zre * -1;
+    }
+    else
+	{
+		z1_re = z1->abs_zre;
+	}
+	
+	/* Imaginary parts */
+
+    if( z1->sign_zim[0] == '-')
+	{
+		z1_im = z1->abs_zim * -1;
+    }
+    else
+    {
+        z1_im = z1->abs_zim;
+    }
+
+	z1_re = z1_re / z3_re;
+	z1_im = z1_im / z3_re;
+	
+	result_ptr = make_z(z1_re, z1_im);
+
+	free(z3);
+
+	return(result_ptr);
+}
+
+
+
 

@@ -59,3 +59,5 @@ struct complex_number *dot_product(struct complex_number *z1, struct complex_num
 struct complex_number *cross_product(struct complex_number *z1, struct complex_number *z2);
 /* function to find the complex conjugate of a complex number */
  struct complex_number *conjugate_z(struct complex_number *z1);
+/* function to find the unit vector of a complex number */
+ struct complex_number *uvec_z(struct complex_number *z1);

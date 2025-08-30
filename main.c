@@ -139,6 +139,14 @@ int main()
 				free(z2);
 				free(result);
 				break;
+			case 'U': 
+				z1 = get_z1();
+				result = uvec_z(z1);
+				print_single_operand(z1);
+				print_result(10,result);
+				free(z1);
+				free(result);
+				break;
 			}
 	}
 

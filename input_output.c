@@ -124,7 +124,7 @@ void print_dual_operands(struct complex_number *z1, struct complex_number *z2)
 
 	printf("\nZ1 = %c%.2f %c j%.2f\n",
 		   	z1->sign_zre[0], z1->abs_zre, z1->sign_zim[0], z1->abs_zim); 
-	printf("Z2 = %c%.2f %c j%.2f\n",
+	printf("Z2 = %c%.2f %c j%.2f\n\n",
 		   	z2->sign_zre[0], z2->abs_zre, z2->sign_zim[0], z2->abs_zim); 
 }
 	/* print the struct->members */
@@ -132,14 +132,14 @@ void print_dual_operands(struct complex_number *z1, struct complex_number *z2)
 void print_single_operand(struct complex_number *z1)
 {
 
-	printf("\nZ1 = %c%.2f %c j%.2f\n",
+	printf("\nZ1 = %c%.2f %c j%.2f\n\n",
 		   	z1->sign_zre[0], z1->abs_zre, z1->sign_zim[0], z1->abs_zim); 
 }
 
 void print_polar_operand(struct complex_number *z1)
 {
 
-	printf("\nZ1 = %.2f < %c%.2f degrees\n",
+	printf("\nZ1 = %.2f < %c%.2f degrees\n\n",
 		   	 z1->abs_zre, z1->sign_zim[0],z1->abs_zim); 
 }
 
@@ -159,7 +159,13 @@ void print_result(int r, struct complex_number *result)
 	char sign[1];
 	char function[] = {'+', '-', '*', '/'}; 
 	printf("==================================================\n\n");
-	if(r ==9)
+	if(r == 10)
+	{
+		printf("\n\tUvec = %c%.3f %c j%.3f \n\n", 
+				result->sign_zre[0], result->abs_zre, 
+				result->sign_zim[0], result->abs_zim);
+	}
+	else if(r ==9)
 	{
 		printf("\n\tZ1 x Z2 = %c%.3f \n\n", 
 				result->sign_zre[0], result->abs_zre);
@@ -214,7 +220,7 @@ int menu(void)
 {
 	int ch;
 
-	printf("A)dd\t\tS)ubtract\tM)ultiply\tD)ivide\n\nI)nverse\tC)onjugate\n\n.)dot\t\tx)cross\n\nP)olar\tR)ect\n\nQ)uit\n\nEnter Choice : ");
+	printf("A)dd\t\tS)ubtract\tM)ultiply\tD)ivide\n\nI)nverse\tC)onjugate\n\n.)dot\t\tx)cross\t\tU)vec\n\nP)olar\tR)ect\n\nQ)uit\n\nEnter Choice : ");
 
 	ch=getchar();
 	while(getchar()!='\n')
