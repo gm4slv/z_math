@@ -1,23 +1,30 @@
-CFLAGS = -g -Wall -ansi -pedantic
-CC = gcc
-SRC = main.c z_math.c input_output.c defs.h
-OBJ = main.o z_math.o input_output.o
-LDFLAGS = -lm
-PREFIX = /home/g4slv/bin
-BIN = zcalc
+SRC_DIR   := src
+BUILD_DIR := build
+BIN 	  := $(BUILD_DIR)/zcalc
+CC_FLAGS := -g -ansi -Wall -pedantic
+CC := gcc
+LDFLAGS= -lm
 
-zcalc: $(SRC)
-	$(CC) $(CFLAGS) -o zcalc $(SRC) $(LDFLAGS)
 
-all: $(OBJ)
-	$(CC) $(CFLAGS) -o zcalc $(OBJ)
+SRCS := $(shell find $(SRC_DIR) -name '*.c')
+OBJS := $(subst $(SRC_DIR), $(BUILD_DIR), $(SRCS:.c=.o))
+
+all : $(OBJS) $(BIN)
+
+$(BIN) : $(OBJS) | $(BUILD_DIR)
+	@echo "------ Make $(BIN) ------"
+	rm -f $(BIN)
+	$(CC) $(CC_FLAGS) -o $(BIN) $(OBJS) $(LDFLAGS)
+
+$(BUILD_DIR)/%.o : $(SRC_DIR)/%.c | $(BUILD_DIR)
+	@echo "------ Make $(@) ------"
+	rm -f $@
+	$(CC) $(CC_FLAGS) -c -o $@ $< $(LDFLAGS)
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+-include $(BUILD_DIR)/*.d
 
 clean:
-	rm -f $(OBJ)
-
-clean_all:
-	rm -f $(OBJ) zcalc
-
-install : zcalc
-	@echo "Installing $(BIN) $(DESTDIR)$(PREFIX)..."
-	@install -m 755 $(BIN) "$(DESTDIR)$(PREFIX)/$(BIN)"
+	rm -rf $(BUILD_DIR)/*
