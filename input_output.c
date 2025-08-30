@@ -158,20 +158,26 @@ void print_result(int r, struct complex_number *result)
 {
 	char sign[1];
 	char function[] = {'+', '-', '*', '/'}; 
-	if(r == 8)
+	printf("==================================================\n\n");
+	if(r ==9)
 	{
-		printf("\n Z1 . Z2 = %c%.3f\n\n", 
+		printf("\n\tZ1 x Z2 = %c%.3f \n\n", 
+				result->sign_zre[0], result->abs_zre);
+	}
+	else if(r == 8)
+	{
+		printf("\n\tZ1 . Z2 = %c%.3f \n\n", 
 				result->sign_zre[0], result->abs_zre);
 	}
 	else if(r == 7)
 	{
-		printf("\n Z1* = %c%.3f %c j%.3f\n\n", 
+		printf("\n\tZ1* = %c%.3f %c j%.3f\n\n", 
 				result->sign_zre[0], result->abs_zre, 
 				result->sign_zim[0],result->abs_zim);
 	}
 	else if(r == 4)
 	{
-		printf("\n 1 / Z1 = %c%.3f %c j%.3f\n\n", 
+		printf("\n\t1 / Z1 = %c%.3f %c j%.3f\n\n", 
 				result->sign_zre[0], result->abs_zre, 
 				result->sign_zim[0],result->abs_zim);
 	}
@@ -182,23 +188,25 @@ void print_result(int r, struct complex_number *result)
 			sign[0] = result->sign_zim[0];
 		else
 			sign[0] = ' ';
-		printf("\n Mag < angle = %.3f < %c%.3f degrees\n\n", 
+		printf("\n\tMag < angle = %.3f < %c%.3f degrees\n\n", 
 				result->abs_zre,sign[0],result->abs_zim);
 	}
 	else if( r == 6)
 	{
 		printf("Converted to rectangular\n");
-		printf("\n Z1 = %c%.3f %c j%.3f\n\n", 
+		printf("\n\tZ1 = %c%.3f %c j%.3f\n\n", 
 				result->sign_zre[0], result->abs_zre, 
 				result->sign_zim[0], result->abs_zim);
 	}
 
 	else 
 	{	
-		printf("\nZ1 %c Z2 = %c%.3f %c j%.3f\n\n", 
+		printf("\n\tZ1 %c Z2 = %c%.3f %c j%.3f\n\n", 
 				function[r], result->sign_zre[0], result->abs_zre, 
 				result->sign_zim[0], result->abs_zim); 
 	}
+	printf("\n==================================================\n\n");
+
 }
 
 
@@ -206,7 +214,7 @@ int menu(void)
 {
 	int ch;
 
-	printf("A)dd, S)ubtract, M)ultiply, D)ivide, I)nverse, C)onjugate, .)dot, r->P)olar, p->R)ect, Q)uit: ");
+	printf("A)dd\t\tS)ubtract\tM)ultiply\tD)ivide\n\nI)nverse\tC)onjugate\n\n.)dot\t\tx)cross\n\nP)olar\tR)ect\n\nQ)uit\n\nEnter Choice : ");
 
 	ch=getchar();
 	while(getchar()!='\n')

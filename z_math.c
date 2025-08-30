@@ -581,13 +581,43 @@ struct complex_number *conjugate_z(struct complex_number *z1)
 struct complex_number *dot_product(struct complex_number *z1, struct complex_number *z2)
 {
 	struct complex_number *result_ptr;
-	struct complex_number *z2_conj;
+	struct complex_number *z3;
 	
-	z2_conj = conjugate_z(z2);
+	z3 = conjugate_z(z2);
 
-	result_ptr = multiply_z(z1, z2_conj);
+	result_ptr= multiply_z(z1, z3);
+
+	/* dot product is the Re part... so set Im to zero */
+
+	result_ptr->abs_zim = 0;
+
+	free(z3);
+
+	return(result_ptr);
+}
+
+struct complex_number *cross_product(struct complex_number *z1, struct complex_number *z2)
+{
+	struct complex_number *result_ptr;
+	struct complex_number *z3;
+	struct complex_number *z4;
+	struct complex_number *z5;
 	
-	free(z2_conj);
+	z3 = conjugate_z(z1);
+	z4 = conjugate_z(z2);
+	z5 = make_z(0,2);
+	
+
+	result_ptr=divide_z(( subtract_z(multiply_z(z2,z3), multiply_z(z1, z4)) ), z5); 
+		;
+
+	/* dot product is the Re part... so set Im to zero */
+
+	result_ptr->abs_zim = 0;
+
+	free(z3);
+	free(z4);
+	free(z5);
 
 	return(result_ptr);
 }

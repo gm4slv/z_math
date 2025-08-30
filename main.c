@@ -129,6 +129,16 @@ int main()
 				free(z2);
 				free(result);
 				break;
+			case 'X': 
+				z1 = get_z1();
+				z2 = get_z2();
+				print_dual_operands(z1,z2);
+				result = cross_product(z1,z2);
+				print_result(9,result);
+				free(z1);
+				free(z2);
+				free(result);
+				break;
 			}
 	}
 
