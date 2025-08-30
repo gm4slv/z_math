@@ -12,6 +12,19 @@ It's a learning curve.....
 I'm also using this project to learn how to use git and
 make / Makefile 
 
+
+As an interim:
+
+cd src
+make
+
+will make the binary and object files, and move them into 
+the build directory.
+
+There's all sorts of ways to handle separate build and src
+directory structures with Makefiles, but until I understand
+more about the syntax I'll do simply.
+
 ==============================================================
 
 
