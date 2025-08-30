@@ -10,5 +10,3 @@ all : $(BIN)
 
 $(BIN) : $(OBJS)
 	$(CC) $(CC_FLAGS) -o $(BIN) $(OBJS) $(LDFLAGS)
-	mv *.o ../build/
-	mv $(BIN) ../build
