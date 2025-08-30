@@ -262,7 +262,7 @@ struct complex_number *multiply_z(struct complex_number *z1, struct complex_numb
  * there is a simpler funtion divide2_z() which uses existing
  * invert_z and multiply_z instead
  *
- *  which is better? */
+ **/
 struct complex_number *divide_z(struct complex_number *z1, struct complex_number *z2)
 {
 	struct complex_number *result_ptr;
@@ -351,11 +351,6 @@ struct complex_number *divide2_z(struct complex_number *z1, struct complex_numbe
 
 	result_ptr = multiply_z(z1,z3);
 	
-        /* send the real and imaginary results to 
-         * make_z() and assign the returned pointer
-         * to the result struct */
-
-      /*  result_ptr = make_z(result_re, result_im); */
 	free(z3);
 
 	return(result_ptr);
@@ -443,30 +438,25 @@ struct complex_number *rect_to_polar(struct complex_number *z1)
                 z1_im = z1->abs_zim;
         }
 
- 		/* THIS IS NOT FULLY CORRECT---- NEED TO ACCOUNT FOR
-		 * OTHER QUADRANTS WHERE parts are negative
-		 * THE SQRT function can't handle these properly
-		 *
-		 */
 
         result_re = sqrt((z1_re * z1_re ) + (z1_im * z1_im)) ;
         result_im = 180 * atan(z1_im / z1_re) / PI;
 		
 		/* work out the quadrant */
 
-		if ( z1_re >= 0 && z1_im < 0 )
+		if ( z1_re >= 0 && z1_im < 0 )		/* 4th quadrant */
 		{
 			result_im = result_im ;
 		}
-		else if  ( z1_re < 0 && z1_im < 0 ) /* 3rd quadrant */
+		else if  ( z1_re < 0 && z1_im < 0 )	/* 3rd quadrant */
 		{
 			result_im = result_im - 180;
 		}
-		else if( z1_re < 0 && z1_im >= 0) /* 2nd quadrant */
+		else if( z1_re < 0 && z1_im >= 0) 	/* 2nd quadrant */
 		{
 			result_im = result_im + 180;
 		}
-		else
+		else								/* 1st quadrant */
 		{
 		;
 		}
@@ -586,7 +576,8 @@ struct complex_number *dot_product(struct complex_number *z1, struct complex_num
 
 	result_ptr= multiply_z(z1, z3);
 
-	/* dot product is the Re part... so set Im to zero */
+	/* dot product is the Re part... so set Im to zero ... BUT it isn't displayed in
+	 * print_result() anyway  */
 
 	result_ptr->abs_zim = 0;
 
@@ -614,7 +605,19 @@ struct complex_number *cross_product(struct complex_number *z1, struct complex_n
 	z8 = subtract_z(z6, z7);
 	
 	result_ptr = divide_z(z8, z5);
-	
+
+	/* I originally tried to do the calculation in one long function call to make_z() using
+	 * only z1, z1 and "Local"  z3, z4 and 	z5  rather than making more "Local" temporary 
+	 * complex_numbers as intermediate values (now z6, z7 and z8).
+	 *
+	 * this lead to memory leak - I think due to calling multiply_z() and subtract_z() from within
+	 * the  call to make_z();
+	 *
+	 * I got the correct answer, but memory leaked, despite calling free(z3), free(z4) and free(z5).
+	 *
+	 * Now I calculate the intermediate parts as new complex_numbers and they are ALL free'd at the end:
+	 */
+
 	free(z3);	
 	free(z4);
 	free(z5);
@@ -622,12 +625,11 @@ struct complex_number *cross_product(struct complex_number *z1, struct complex_n
 	free(z7);
 	free(z8);
 
-/*	result_ptr=divide_z(( subtract_z(multiply_z(z2,z3), multiply_z(z1, z4)) ), z5); */
 
-	/* dot product is the Re part... so set Im to zero */
+	/* cross product is the Re part... so set Im to zero */
 
-	result_ptr->abs_zim = 0;
-
+	/* result_ptr->abs_zim = 0;  ---- commented out - it /should/ calculate out to zero
+	 * but it isn't displayed in print_result() anyway */
 	
 	return(result_ptr);
 }
