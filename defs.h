@@ -33,7 +33,7 @@ struct complex_number *get_z1_polar(void);
 void print_dual_operands(struct complex_number *z1, struct complex_number *z2);
 void print_single_operand(struct complex_number *z1);
 void print_polar_operand(struct complex_number *z1);
-void print_result(int,  struct complex_number *result);
+void print_result(char r,  struct complex_number *result);
 
 /* a function to create the struct (pointer) when given the 
  * real and imaginary parts of a complex number */
