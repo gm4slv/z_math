@@ -3,7 +3,7 @@
 
 const float PI = 3.14159265359;
 
-struct z_number *make_z(float in_re, float in_im)
+struct z_number *make_z(float in_re, float in_im, int p)
 {
 
 
@@ -52,7 +52,7 @@ struct z_number *make_z(float in_re, float in_im)
 	z_ptr->sign_zim[0] = sign_im[0];
 	z_ptr->abs_zre = in_re;
 	z_ptr->abs_zim = in_im;
-
+	z_ptr->polar = p;
 	return (z_ptr);
 }
 
@@ -70,6 +70,15 @@ struct z_number *add_z(struct z_number *z1, struct z_number *z2)
 	
 	/*  make the signed version of real & imaginary parts
          *  of z1 and z1 to allow the calculation to be made */
+	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
 
         /* real parts */
         if( z1->sign_zre[0] == '-')
@@ -117,7 +126,7 @@ struct z_number *add_z(struct z_number *z1, struct z_number *z2)
          * make_z() and assign the returned pointer
          * to the result struct */
 
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -135,6 +144,14 @@ struct z_number *subtract_z(struct z_number *z1, struct z_number *z2)
 	
 	/*  make the signed version of real & imaginary parts
          *  of z1 and z1 to allow the calculation to be made */
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
 
         /* real parts */
         if( z1->sign_zre[0] == '-')
@@ -182,7 +199,7 @@ struct z_number *subtract_z(struct z_number *z1, struct z_number *z2)
          * make_z() and assign the returned pointer
          * to the result struct */
 
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -197,6 +214,14 @@ struct z_number *multiply_z(struct z_number *z1, struct z_number *z2)
 	float z2_re; /*  multiplying the z->abs_xxx by -1 when the      */
 	float z2_im; /*  sign member character  is '-'                  */
 	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
 	
 	/*  make the signed version of real & imaginary parts
          *  of z1 and z1 to allow the calculation to be made */
@@ -250,7 +275,7 @@ struct z_number *multiply_z(struct z_number *z1, struct z_number *z2)
          * make_z() and assign the returned pointer
          * to the result struct */
 
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -273,6 +298,14 @@ struct z_number *divide_z(struct z_number *z1, struct z_number *z2)
 	float z2_re; /*  multiplying the z->abs_xxx by -1 when the      */
 	float z2_im; /*  sign member character  is '-'                  */
 
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
 	
 	
 	/*  make the signed version of real & imaginary parts
@@ -329,7 +362,7 @@ struct z_number *divide_z(struct z_number *z1, struct z_number *z2)
          * make_z() and assign the returned pointer
          * to the result struct */
 
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im,0);
 
 	return(result_ptr);
 }
@@ -345,6 +378,15 @@ struct z_number *divide2_z(struct z_number *z1, struct z_number *z2)
 {
 	struct z_number *result_ptr;
 	struct z_number *z3;
+	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
 
 	z3 = invert_z(z2);
 	
@@ -366,6 +408,10 @@ struct z_number *invert_z(struct z_number *z1)
 	float z1_re; /*  these are the signed real & imaginary parts    */
 	float z1_im; /*  made by reference to the z->sign... char       */
 	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
 	
 	/*  make the signed version of real & imaginary parts
          *  of z1 and z1 to allow the calculation to be made */
@@ -399,7 +445,7 @@ struct z_number *invert_z(struct z_number *z1)
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
          * to the result struct */
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -465,7 +511,7 @@ struct z_number *rect_to_polar(struct z_number *z1)
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
          * to the result struct */
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 1);
 
 	return(result_ptr);
 }
@@ -515,7 +561,7 @@ struct z_number *polar_to_rect(struct z_number *z1)
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
          * to the result struct */
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -527,6 +573,11 @@ struct z_number *conjugate_z(struct z_number *z1)
 	float result_im;
 	float z1_re; /*  these are the signed real & imaginary parts    */
 	float z1_im; /*  made by reference to the z->sign... char       */
+	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
 	
 	
 	/*  make the signed version of real & imaginary parts
@@ -561,7 +612,7 @@ struct z_number *conjugate_z(struct z_number *z1)
         /* send the real and imaginary results to 
          * make_z() and assign the returned pointer
          * to the result struct */
-        result_ptr = make_z(result_re, result_im);
+        result_ptr = make_z(result_re, result_im, 0);
 
 	return(result_ptr);
 }
@@ -571,6 +622,16 @@ struct z_number *dot_product(struct z_number *z1, struct z_number *z2)
 {
 	struct z_number *result_ptr;
 	struct z_number *z3;
+	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
+	
 	
 	z3 = conjugate_z(z2);
 
@@ -596,9 +657,19 @@ struct z_number *cross_product(struct z_number *z1, struct z_number *z2)
 	struct z_number *z7;
 	struct z_number *z8;
 	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+	if(z2->polar)
+	{
+		z2 = polar_to_rect(z2);
+	}
+	
+	
 	z3 = conjugate_z(z1);
 	z4 = conjugate_z(z2);
-	z5 = make_z(0,2);
+	z5 = make_z(0,2,0);
 	
 	z6 = multiply_z(z2,z3);
 	z7 = multiply_z(z1,z4);
@@ -642,6 +713,11 @@ struct z_number *uvec_z(struct z_number *z1)
 	float z1_im;
 	float z3_re;
 	
+	if(z1->polar)
+	{
+		z1 = polar_to_rect(z1);
+	}
+
 	z3 = rect_to_polar(z1);
 	
 	z3_re = z3->abs_zre;
@@ -670,7 +746,7 @@ struct z_number *uvec_z(struct z_number *z1)
 	z1_re = z1_re / z3_re;
 	z1_im = z1_im / z3_re;
 	
-	result_ptr = make_z(z1_re, z1_im);
+	result_ptr = make_z(z1_re, z1_im, 0);
 
 	free(z3);
 

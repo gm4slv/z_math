@@ -10,6 +10,7 @@ struct z_number {
 	char sign_zim[1];
 	float abs_zre;
 	float abs_zim;
+	int polar;
 };
 
 /* declare complex number struct pointers to hold the operands z1 and z1
@@ -25,7 +26,7 @@ struct z_number {
 
 /* a function to create the struct (pointer) when given the 
  * real and imaginary parts of a complex number */
-struct z_number *make_z(float zre, float zim);
+struct z_number *make_z(float zre, float zim, int p);
 
 /* a funtion to add two complex numbers and put the result into 
  * result struct */
