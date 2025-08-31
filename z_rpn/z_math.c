@@ -49,7 +49,10 @@ struct z_number *make_z(float in_re, float in_im, int p)
 	 * pointer for the location of the filled-in-with-data struct */
 
 	z_ptr->sign_zre[0] = sign_re[0];
-	z_ptr->sign_zim[0] = sign_im[0];
+	if(!p)
+		z_ptr->sign_zim[0] = sign_im[0];
+	else
+		z_ptr->sign_zim[0] = '@';
 	z_ptr->abs_zre = in_re;
 	z_ptr->abs_zim = in_im;
 	z_ptr->polar = p;

@@ -19,8 +19,8 @@ int main(void)
 	
 	char opcode;
 	int drop_flag;
-	int polar_flag;
-
+	int polar_flag=0;
+	int null_flag = 0;
 	char line[20];
 
     /* Initializing the stack */
@@ -86,15 +86,19 @@ int main(void)
 				}
 				else if (line[0] > 44 && line[0] < 58)
 				{
-					sscanf(line, "%f", &real);
-					printf(" %.3f \n", real);
-				}
-		
-		
-				if (line[0] > 44 && line[0] < 58)
-				{
 					sscanf(line, "%f", &im);
 					printf(" %.3f \n", im);
+				}
+				else if (line[0] == 64)
+				{
+					for (i = 0;i<strlen(line);++i)
+					{
+						line[i] = line[i+1];
+					}
+					//	memmove(line, line+1, strlen(line));
+					sscanf(line, "%f", &im);
+					printf("POLAR %.3f \n", im);
+					polar_flag = 1;
 				}
 		
 			/**********************************
@@ -108,8 +112,8 @@ int main(void)
 					z_stack[a] = z_stack[a-1];
 					--a;
 				}
-		
-				z_stack[a] = make_z(real, im, 0);
+					
+				z_stack[a] = make_z(real, im, polar_flag);
 		
 				++i;
 		
@@ -128,7 +132,7 @@ int main(void)
 		}	
 		
 		polar_flag = 0;
-
+		null_flag = 0;
 		switch (opcode)
 		{
 			case '+':
@@ -185,7 +189,7 @@ int main(void)
 				return(0);
 			default:
 				printf("Not understood... \n");
-				drop_flag = 0;
+				null_flag = 1;
 
 		}
 
@@ -195,7 +199,8 @@ int main(void)
 		 *
 		 * **********************************/
 		printf("Drop flag %d \n", drop_flag);
-		
+		printf("Polar_flag %d \n", polar_flag);
+		printf("null_flag %d \n", null_flag);	
 
 		/* make new stack-value from result */
 		if(polar_flag)
@@ -227,7 +232,10 @@ int main(void)
 		}
 		else
 		{
-			if(!polar_flag)
+			if(null_flag)
+				;
+
+			else if(!polar_flag)
 			{
 				z_stack[0]->sign_zre[0] = result->sign_zre[0];
 				z_stack[0]->sign_zim[0] = result->sign_zim[0];	
