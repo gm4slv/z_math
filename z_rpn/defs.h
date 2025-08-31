@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 
+#define SIZE 10
 
 struct z_number {
 	char sign_zre[1];
@@ -47,4 +48,5 @@ struct z_number *cross_product(struct z_number *z1, struct z_number *z2);
 /* function to find the complex conjugate of a complex number */
  struct z_number *conjugate_z(struct z_number *z1);
 /* function to find the unit vector of a complex number */
- struct z_number *uvec_z(struct z_number *z1);
+struct z_number *uvec_z(struct z_number *z1);
+
