@@ -23,6 +23,7 @@ int main(void)
 	int polar_flag=0;
 	int null_flag = 0;
 	char line[20];
+	int make_polar;
 
     /* Initializing the stack */
 
@@ -34,7 +35,6 @@ int main(void)
 	
 	show_stack(z_stack);
 	
-	i = 0;
 
 	while(1)
 	{	
@@ -105,7 +105,7 @@ int main(void)
 					}
 					sscanf(line, "%f", &im);
 				/*	printf("POLAR %.3f \n", im); */
-					polar_flag = 1;
+					make_polar = 1;
 				}
 				else
 				{
@@ -144,9 +144,11 @@ int main(void)
 
 				}
 
-				z_stack[0] = make_z(real, im, polar_flag);
+				z_stack[0] = make_z(real, im, make_polar);
 				++i;
-		
+				
+				make_polar = 0;
+
 				if(i > SIZE-1)
 					i = SIZE - 1;
 
@@ -256,7 +258,7 @@ int main(void)
 
 		if(drop_flag)
 		{
-			a = 0;
+			a = 1;
 				
 			while(a<i)
 				{
